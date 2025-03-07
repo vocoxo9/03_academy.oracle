@@ -346,8 +346,8 @@ SELECT NEXT_DAY(SYSDATE, '일요일') FROM DUAL;
 
 -- 언어 설정 : AMERICAN
 ALTER SESSION SET NLS_LANGUAGE = AMERICAN;
-SELECT NEXT_DAY(SYSDATE, 'SUN') FROM DUAL;
-SELECT NEXT_DAY(SYSDATE, 'SUNDAY') FROM DUAL;
+SELECT NEXT_DAY(SYSDATE, 'THUR') FROM DUAL;
+SELECT NEXT_DAY(SYSDATE, 'MONDAY') FROM DUAL;
 SELECT NEXT_DAY(SYSDATE, '일') FROM DUAL;
 
 
@@ -356,7 +356,6 @@ SELECT NEXT_DAY(SYSDATE, '일') FROM DUAL;
 */
 
 SELECT LAST_DAY(SYSDATE) FROM DUAL;
-
 -- 사원 정보 중 사원명, 입사일, 입사한 달의 마지막 날짜, 입사한 달의 근무일수 조회
 SELECT EMP_NAME 사원명, HIRE_DATE 입사일, LAST_DAY(HIRE_DATE) "입사한 달의 마지막 날",
         LAST_DAY(HIRE_DATE) - HIRE_DATE +1 "입사 월의 근무일수"
@@ -366,7 +365,7 @@ FROM EMPLOYEE;
 /*
     - EXTRACT : 특정 날짜로부터 연도/월/일 값을 추출하여 반환하는 함수
     
-                EXTRACT(YEAR FROM 날짜)  : 해당 날씨의 연도만 추출
+                EXTRACT(YEAR FROM 날짜)  : 해당 날짜의 연도만 추출
                 EXTRACT(MONTH FROM 날짜) : 해당 날짜의 월만 추출
                 EXTRACT(DAY FROM 날짜)   : 해당 날짜의 일만 추출
 */
@@ -396,7 +395,7 @@ ORDER BY 2, 3, 4;
 */
 
 /*
-    TO_CHAR : 숫자 또는 날씨 타입의 값을 문자 타입으로 변경해주는 함수
+    TO_CHAR : 숫자 또는 날짜 타입의 값을 문자 타입으로 변경해주는 함수
             TO_CHAR(숫자 또는 날짜 [, 포맷])
 */
 
@@ -409,7 +408,7 @@ SELECT TO_CHAR(1234) "타입 변경만 한 데이터", TO_CHAR(1234, '999999') "포맷지정�
 SELECT TO_CHAR(1234) "타입 변경만 한 데이터", TO_CHAR(1234, '000000') "포맷지정데이터" FROM DUAL;
 -- => 0 : 개수만큼 자리수를 확보. 오른쪽정렬. 빈자리를 0으로 채움.
 
-SELECT TO_CHAR(1234, 'L999999') "포맷데이터" FROM DUAL;
+SELECT TO_CHAR(1234, 'L000000') "포맷데이터" FROM DUAL;
 -- => L : 현재 설정된 나라(언어)의 로컬 화폐단위를 표시. KOREAN -> \(원화), AMERICAN -> $
 
 SELECT TO_CHAR(1234, '$999999') "포맷데이터" FROM DUAL;
